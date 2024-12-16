@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "642167901630",
+    "project_id": "specurator-vet",
+    "storage_bucket": "specurator-vet.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642167901630:android:d2777cbf032e2ac3813def",
+        "android_client_info": {
+          "package_name": "com.example.specurator"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCmE7BvfyNMVQ55Cea3KvS5G6T66u1e57I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
