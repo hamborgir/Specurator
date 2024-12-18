@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
+    android:id="@+id/search"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
@@ -11,52 +11,72 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:orientation="horizontal"
         android:paddingTop="16dp"
         android:paddingStart="16dp"
         android:paddingBottom="8dp"
         android:paddingEnd="8dp">
         <ImageButton
-            android:id="@+id/mainNavButton"
+            android:id="@+id/searchBackButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/backicon"
+            android:background="@android:color/transparent"
+            tools:ignore="ContentDescription" />
+        <ImageButton
+            android:id="@+id/searchNavButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:src="@drawable/menu_01"
             android:background="@android:color/transparent"
+            android:alpha="0"
             tools:ignore="ContentDescription" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="156dp"
+        android:layout_height="64dp"
         android:background="@color/colorPrimary"
-        android:paddingTop="3dp"
-        android:paddingBottom="2dp"
-        >
+        android:paddingTop="1dp">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/black_gold_bg">
-            <TextView
-                android:id="@+id/mainHeading"
+            android:background="@color/colorBackground"
+            android:padding="4dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="@string/all_product"
-                android:textColor="@color/colorPrimary"
-                android:textSize="48sp"
-                android:textAlignment="center"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:fontFamily="@font/inria_sans"
-                android:shadowColor="@color/colorBackground"
-                android:shadowDx="5"
-                android:shadowDy="3"
-                android:shadowRadius="1"
-                />
+                android:layout_margin="4dp"
+                android:paddingHorizontal="2dp"
+                android:background="@drawable/search_bar"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/search_01"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginVertical="8dp"
+                    tools:ignore="ContentDescription" />
+                <EditText
+                    android:id="@+id/searchBarET"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:importantForAutofill="no"
+                    android:inputType="text"
+                    android:text="@string/search"
+                    android:paddingVertical="2dp"
+                    android:layout_marginEnd="16dp"
+                    android:textColor="@color/colorPrimary"
+                    android:fontFamily="@font/inria_sans"
+                    />
+            </LinearLayout>
         </LinearLayout>
 
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/mainRVContainer"
+        android:id="@+id/searchRVContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -73,7 +93,7 @@
             android:background="@color/colorBackground"
             android:gravity="center">
             <ImageButton
-                android:id="@+id/mainHomeBtn"
+                android:id="@+id/searchHomeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/iconhome"
@@ -89,7 +109,7 @@
                 android:alpha="0"
                 tools:ignore="ContentDescription" />
             <ImageButton
-                android:id="@+id/mainSearchBtn"
+                android:id="@+id/searchSearchBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:src="@drawable/iconsearch"

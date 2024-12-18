@@ -12,4 +12,6 @@
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
     <string name="all_product">All Product</string>
+    <string name="phone_model">Phone Model</string>
+    <string name="search">Search...</string>
 </resources>
