@@ -6,7 +6,6 @@
          <item name="colorAccent">@color/colorAccent</item>
 
         <item name="fontFamily">@font/inria_sans</item>
-        <item name="android:textColor">@color/colorTextSecondary</item>
     </style>
 
     <style name="appTheme" parent="Base.Theme.Specurator"/>

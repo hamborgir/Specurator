@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -43,35 +43,35 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // copy db ke internal storage
-        dbHelper = DBHelper.getInstance(this);
-        try {
-            dbHelper.copyDatabase();
-            database = dbHelper.openDatabase();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        Log.d("main", "onCreate: db copied");
-        initPhoneList();
-        Log.d("phoneList", "onCreate: " + phoneList.size());
-
-        PhoneAdapter adapter = new PhoneAdapter(phoneList);
-
-        mainRVContainer= findViewById(R.id.mainRVContainer);
-        mainRVContainer.setLayoutManager(new LinearLayoutManager(this));
-        mainRVContainer.setAdapter(adapter);
+//        dbHelper = DBHelper.getInstance(this);
+//        try {
+//            dbHelper.copyDatabase();
+//            database = dbHelper.openDatabase();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//        Log.d("main", "onCreate: db copied");
+//        initPhoneList();
+//        Log.d("phoneList", "onCreate: " + phoneList.size());
+//
+//        PhoneAdapter adapter = new PhoneAdapter(phoneList);
+//
+//        mainRVContainer= findViewById(R.id.mainRVContainer);
+//        mainRVContainer.setLayoutManager(new LinearLayoutManager(this));
+//        mainRVContainer.setAdapter(adapter);
 
 
     }
 
-    private void initPhoneList() {
-        phoneList = dbHelper.getPhones(null);
+//    private void initPhoneList() {
+//        phoneList = dbHelper.getPhones(null);
+//
+//    }
 
-    }
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        dbHelper.closeDatabase();
-    }
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//        dbHelper.closeDatabase();
+//    }
 }

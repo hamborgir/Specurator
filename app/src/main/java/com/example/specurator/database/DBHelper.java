@@ -115,7 +115,7 @@ public class DBHelper extends SQLiteOpenHelper {
         String selection = null;
         String[] selectionArgs = null;
 
-        if (brand != null && !brand.isEmpty()) {
+        if (brand != "All") {
             selection = FIELD_BRAND + " = ?";
             selectionArgs = new String[]{brand};
         }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/filter_all"
+            android:icon="@drawable/iconhome" />
+        <item
+            android:id="@+id/filter_samsung"
+            android:icon="@drawable/iconhome"
+            />
+        <item
+            android:id="@+id/filter_xiaomi"
+            android:icon="@drawable/iconhome" />
+        <item
+            android:id="@+id/filter_asus"
+            android:icon="@drawable/iconhome" />
+        <item
+            android:id="@+id/filter_google"
+            android:icon="@drawable/iconhome" />
+        <item
+            android:id="@+id/filter_oneplus"
+            android:icon="@drawable/iconhome" />
+        <item
+            android:id="@+id/filter_infinix"
+            android:icon="@drawable/iconhome" />
+        <item
+            android:id="@+id/filter_oppo"
+            android:icon="@drawable/iconhome" />
+        <item
+            android:id="@+id/filter_vivo"
+            android:icon="@drawable/iconhome" />
+    </group>
+</menu>
