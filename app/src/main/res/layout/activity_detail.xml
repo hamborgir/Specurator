@@ -1,0 +1,211 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".DetailActivity"
+    android:background="@color/colorBackground"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp">
+        <ImageButton
+            android:id="@+id/searchBackButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/backicon"
+            android:background="@android:color/transparent"
+            tools:ignore="ContentDescription" />
+        <ImageButton
+            android:id="@+id/searchNavButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/menu_01"
+            android:background="@android:color/transparent"
+            tools:ignore="ContentDescription"
+            android:alpha="0"/>
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:paddingTop="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackground"
+            android:padding="4dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Product Name"
+                android:textStyle="bold"
+                android:textSize="24sp"
+                android:fontFamily="@font/inria_sans"
+                android:textColor="@color/colorPrimary"
+                android:paddingStart="4dp"
+                android:paddingTop="4dp"
+                />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:padding="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/sample"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="8dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Release Date"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="16sp"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Weight"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="OS"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Storage"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Screen Size"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Screen Resolution"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="RAM"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Battery"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Camera"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Price"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/inria_sans"
+                        android:textColor="@color/colorAccent"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/mainRVContainer"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:padding="16dp"
+        android:orientation="vertical"/>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary"
+        android:paddingTop="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackground"
+            android:gravity="center">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconhome"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                android:alpha="0"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                android:alpha="0"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                android:alpha="0"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>
+
