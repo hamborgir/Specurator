@@ -16,7 +16,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
         android:layout_marginStart="16dp"
-        android:src="@drawable/gridbar"/>
+        android:src="@drawable/menu_01"/>
 
     <TextView
         android:id="@+id/itemTV"

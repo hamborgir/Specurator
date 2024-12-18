@@ -1,92 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:background="@color/colorBackground"
-    android:orientation="vertical"
-    style="@style/activity"
-    >
+    android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:orientation="horizontal"
-        android:paddingHorizontal="16dp"
-        android:paddingVertical="8dp"
-        android:background="@drawable/layout_border_bottom">
-
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingTop="16dp"
+        android:paddingStart="16dp"
+        android:paddingBottom="8dp"
+        android:paddingEnd="8dp">
         <ImageButton
             android:id="@+id/mainNavButton"
-            android:layout_width="60dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:src="@drawable/menu_01"
+            android:background="@android:color/transparent"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="156dp"
+        android:background="@color/colorPrimary"
+        android:paddingTop="3dp"
+        android:paddingBottom="2dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:srcCompat="@drawable/gridbar"
-            android:background="@null"
-            app:tint="@color/colorPrimary"
-            android:scaleType="centerCrop"
-            />
-
+            android:background="@drawable/black_gold_bg">
+            <TextView
+                android:id="@+id/mainHeading"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/all_product"
+                android:textColor="@color/colorPrimary"
+                android:textSize="48sp"
+                android:textAlignment="center"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:fontFamily="@font/inria_sans"
+                android:shadowColor="@color/colorBackground"
+                android:shadowDx="5"
+                android:shadowDy="3"
+                android:shadowRadius="1"
+                />
+        </LinearLayout>
 
     </LinearLayout>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:paddingBottom="4dp"
-        android:background="@drawable/layout_border_bottom">
-
-        <ImageView
-            android:id="@+id/mainImage"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src=""
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:scaleType="centerCrop"/>
-
-        <TextView
-            android:id="@+id/mainHeading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="All Product"
-            android:gravity="center"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:textColor="@color/colorPrimary"
-            android:textStyle="bold"
-            android:textSize="48dp"
-            android:fontFamily="@font/inria_sans"
-            android:shadowColor="@color/black"
-            android:shadowRadius="5"/>
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!--    <image-->
-    
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/mainRVContainer"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:layout_marginTop="4dp"
-        android:layout_marginHorizontal="16dp">
-
-    </androidx.recyclerview.widget.RecyclerView>
+        android:padding="16dp" />
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_weight="0"
-        android:layout_marginTop="4dp"
-        android:paddingTop="4dp"
-        android:background="@drawable/layout_border_top">
-
+        android:layout_height="70dp"
+        android:background="@color/colorPrimary"
+        android:paddingTop="2dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackground"
+            android:gravity="center">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconhome"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                android:alpha="0"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                android:alpha="0"
+                tools:ignore="ContentDescription" />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconsearch"
+                android:background="@color/transparent"
+                android:padding="12dp"
+                android:alpha="0"
+                tools:ignore="ContentDescription" />
+        </LinearLayout>
     </LinearLayout>
-
 </LinearLayout>
+
