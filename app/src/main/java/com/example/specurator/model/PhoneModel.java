@@ -1,8 +1,11 @@
 package com.example.specurator.model;
 
-public class PhoneModel {
+import java.io.Serializable;
+
+public class PhoneModel implements Serializable {
 //    the database uses uppercase first letter as column name
-    String id;
+
+    int id;
     String image;
     String brand;
     String name;
@@ -17,7 +20,36 @@ public class PhoneModel {
     double camera;
     double price; // most likely in Rupee
 
-    public PhoneModel() {
+    public PhoneModel(int id, String image, String brand, String name, String release_date, double weight, String os, int storage, double screen_size, String screen_resolution, double ram, int battery, double camera, double price) {
+        this.id = id;
+        this.image = image;
+        this.brand = brand;
+        this.name = name;
+        this.release_date = release_date;
+        this.weight = weight;
+        this.os = os;
+        this.storage = storage;
+        this.screen_size = screen_size;
+        this.screen_resolution = screen_resolution;
+        this.ram = ram;
+        this.battery = battery;
+        this.camera = camera;
+        this.price = price;
+    }
+
+    public PhoneModel(int id, String brand, String name, String image) {
+        this.id = id;
+        this.brand = brand;
+        this.name = name;
+        this.image = image;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getImage() {

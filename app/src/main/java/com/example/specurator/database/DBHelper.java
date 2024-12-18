@@ -1,8 +1,11 @@
 package com.example.specurator.database;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import com.example.specurator.model.PhoneModel;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -10,6 +13,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "specurator.db";
@@ -102,6 +107,45 @@ public class DBHelper extends SQLiteOpenHelper {
         outputStream.flush();
         outputStream.close();
         inputStream.close();
+    }
+
+    public List<PhoneModel> getPhones(String brand) {
+        List<PhoneModel> phoneList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = null;
+        String[] selectionArgs = null;
+
+        if (brand != null && !brand.isEmpty()) {
+            selection = FIELD_BRAND + " = ?";
+            selectionArgs = new String[]{brand};
+        }
+
+        Cursor cursor = db.query(
+                TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_ID));
+                String phoneBrand = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_BRAND));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_NAME));
+                String image = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_IMAGE));
+                // ... get other columns similarly ...
+
+                PhoneModel phone = new PhoneModel(id, phoneBrand, name, image);
+                phoneList.add(phone);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+        return phoneList;
     }
 
 

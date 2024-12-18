@@ -12,16 +12,23 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.specurator.adapter.PhoneAdapter;
 import com.example.specurator.database.DBHelper;
+import com.example.specurator.model.PhoneModel;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    RecyclerView mainRVContainer;
 
     private DBHelper dbHelper;
     private SQLiteDatabase database;
+    private List<PhoneModel> phoneList;
 
 
     @Override
@@ -35,17 +42,31 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        // copy db ke internal storage
         dbHelper = DBHelper.getInstance(this);
-
         try {
             dbHelper.copyDatabase();
             database = dbHelper.openDatabase();
         } catch (Exception e) {
             e.printStackTrace();
         }
+        Log.d("main", "onCreate: db copied");
+        initPhoneList();
+        Log.d("phoneList", "onCreate: " + phoneList.size());
+
+        PhoneAdapter adapter = new PhoneAdapter(phoneList);
+
+        mainRVContainer= findViewById(R.id.mainRVContainer);
+        mainRVContainer.setLayoutManager(new LinearLayoutManager(this));
+        mainRVContainer.setAdapter(adapter);
+
 
     }
 
+    private void initPhoneList() {
+        phoneList = dbHelper.getPhones(null);
+
+    }
 
 
     @Override

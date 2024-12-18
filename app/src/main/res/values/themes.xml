@@ -6,4 +6,10 @@
     </style>
 
     <style name="Theme.Specurator" parent="Base.Theme.Specurator" />
+    <style name="Theme.Specurator.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+    <style name="Theme.Specurator.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+    <style name="Theme.Specurator.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>
