@@ -1,5 +1,6 @@
 package com.example.specurator;
 
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
@@ -31,8 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     DrawerLayout mainDrawerLayout;
     NavigationView mainNavView;
     RecyclerView mainRVContainer;
-    ImageButton mainNavButton;
-    ImageButton mainSearchButton;
+    ImageButton mainNavButton, mainSearchButton;
 
     String lastClicked = "All";
     String[] brands = {"All", "Samsung", "Xiaomi", "Asus", "Google", "OnePlus", "Infinix", "Oppo", "Vivo"};
@@ -53,9 +53,10 @@ public class HomeActivity extends AppCompatActivity {
             return insets;
         });
         mainRVContainer= findViewById(R.id.mainRVContainer);
-        mainNavButton = findViewById(R.id.mainNavButton);
         mainDrawerLayout = findViewById(R.id.mainDrawerLayout);
         mainNavView = findViewById(R.id.mainNavView);
+        mainNavButton = findViewById(R.id.mainNavButton);
+        mainSearchButton = findViewById(R.id.mainSearchButton);
 
         initDB();
         initPhoneList();
@@ -114,6 +115,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        mainSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent moveIntent = new Intent(HomeActivity.this, SearchActivity.class);
+                startActivity(moveIntent);
+            }
+        });
     }
 
     private void fillRV(List<PhoneModel> phoneList) {

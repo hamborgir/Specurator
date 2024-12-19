@@ -4,39 +4,44 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SearchActivity"
+    android:autofillHints="search..."
     android:background="@color/colorBackground"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:context=".SearchActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:paddingTop="16dp"
         android:paddingStart="16dp"
-        android:paddingBottom="8dp"
-        android:paddingEnd="8dp">
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
+
         <ImageButton
             android:id="@+id/searchBackButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/backicon"
             android:background="@android:color/transparent"
+            android:src="@drawable/backicon"
             tools:ignore="ContentDescription" />
+
         <ImageButton
             android:id="@+id/searchNavButton"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:src="@drawable/menu_01"
-            android:background="@android:color/transparent"
             android:alpha="0"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menu_01"
             tools:ignore="ContentDescription" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@color/colorPrimary"
         android:paddingTop="1dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -47,29 +52,30 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
-                android:paddingHorizontal="2dp"
                 android:background="@drawable/search_bar"
+                android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:gravity="center_vertical">
+                android:paddingHorizontal="2dp">
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/search_01"
-                    android:layout_marginStart="12dp"
                     android:layout_marginVertical="8dp"
+                    android:layout_marginStart="12dp"
+                    android:src="@drawable/search_01"
                     tools:ignore="ContentDescription" />
+
                 <EditText
                     android:id="@+id/searchBarET"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:layout_marginEnd="16dp"
+                    android:autofillHints="search..."
+                    android:fontFamily="@font/inria_sans"
                     android:importantForAutofill="no"
                     android:inputType="text"
-                    android:text="@string/search"
                     android:paddingVertical="2dp"
-                    android:layout_marginEnd="16dp"
-                    android:textColor="@color/colorPrimary"
-                    android:fontFamily="@font/inria_sans"
-                    />
+                    android:textColor="@color/colorPrimary" />
             </LinearLayout>
         </LinearLayout>
 
@@ -87,50 +93,56 @@
         android:layout_height="70dp"
         android:background="@color/colorPrimary"
         android:paddingTop="2dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/colorBackground"
             android:gravity="center">
+
             <ImageButton
                 android:id="@+id/searchHomeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/iconhome"
                 android:background="@color/transparent"
                 android:padding="12dp"
+                android:src="@drawable/iconhome"
                 tools:ignore="ContentDescription" />
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/iconsearch"
+                android:alpha="0"
                 android:background="@color/transparent"
                 android:padding="12dp"
-                android:alpha="0"
+                android:src="@drawable/iconsearch"
                 tools:ignore="ContentDescription" />
+
             <ImageButton
                 android:id="@+id/searchSearchBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/iconsearch"
                 android:background="@color/transparent"
                 android:padding="12dp"
+                android:src="@drawable/iconsearch"
                 tools:ignore="ContentDescription" />
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/iconsearch"
+                android:alpha="0"
                 android:background="@color/transparent"
                 android:padding="12dp"
-                android:alpha="0"
+                android:src="@drawable/iconsearch"
                 tools:ignore="ContentDescription" />
+
             <ImageButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/iconsearch"
+                android:alpha="0"
                 android:background="@color/transparent"
                 android:padding="12dp"
-                android:alpha="0"
+                android:src="@drawable/iconsearch"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>

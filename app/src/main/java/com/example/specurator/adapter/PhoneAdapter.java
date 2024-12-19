@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.specurator.DetailActivity;
 import com.example.specurator.R;
 import com.example.specurator.model.PhoneModel;
 
@@ -71,18 +72,19 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
         String currentImage = phoneList.get(position).getImage();
 
         holder.itemTV.setText(currentName);
-//        holder.itemIV.setImageResource(currentImage);
         Glide.with(context).load(currentImage).into(holder.itemIV);
+
+        PhoneModel phone = phoneList.get(position);
 
         holder.containerCL.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-//                PhoneModel phone = phoneList.get(position);
-//                Intent moveIntent = new Intent(context, DetailActivity.class);
-//
-//                context.startActivity(moveIntent);
+//                PhoneModel phone = phoneList.get(holder.getAdapterPosition());
+                Intent moveIntent = new Intent(context, DetailActivity.class);
+                moveIntent.putExtra("phoneData", phone);
 
+                context.startActivity(moveIntent);
             }
         });
     }

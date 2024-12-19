@@ -37,13 +37,6 @@ public class PhoneModel implements Serializable {
         this.price = price;
     }
 
-    public PhoneModel(int id, String brand, String name, String image) {
-        this.id = id;
-        this.brand = brand;
-        this.name = name;
-        this.image = image;
-    }
-
     public int getId() {
         return id;
     }
