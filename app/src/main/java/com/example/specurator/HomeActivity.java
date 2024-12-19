@@ -119,6 +119,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent moveIntent = new Intent(HomeActivity.this, SearchActivity.class);
+                moveIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(moveIntent);
             }
         });

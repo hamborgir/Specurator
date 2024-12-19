@@ -152,6 +152,51 @@ public class DBHelper extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
 
+
+
+        cursor.close();
+        db.close();
+        return phoneList;
+    }
+
+    public List<PhoneModel> getPhonesByName(String searchString) {
+        List<PhoneModel> phoneList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selection = FIELD_NAME + " LIKE ?";
+        String[] selectionArgs = new String[]{"%" + searchString + "%"}; // Add wildcards
+
+        Cursor cursor = db.query(
+                TABLE_NAME,
+                null,
+                selection,
+                selectionArgs,
+                null,
+                null,
+                null
+        );
+
+        if (cursor.moveToFirst()) {
+            do {
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_ID));
+                String image = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_IMAGE));
+                String brand = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_BRAND));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_NAME));
+                String releaseDate = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_RELEASE_DATE));
+                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_WEIGHT));
+                String os = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_OS));
+                int storage = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_STORAGE));
+                double screenSize = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SCREEN_SIZE));
+                String screenResolution = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SCREEN_RESOLUTION));
+                double ram = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_RAM));
+                int battery = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_BATTERY));
+                double camera = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_CAMERA));
+                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_PRICE));
+
+                PhoneModel phone = new PhoneModel(id, image, brand, name, releaseDate, weight, os, storage, screenSize, screenResolution, ram, battery, camera, price);
+                phoneList.add(phone);
+            } while (cursor.moveToNext());
+        }
+
         cursor.close();
         db.close();
         return phoneList;

@@ -101,7 +101,7 @@
             android:gravity="center">
 
             <ImageButton
-                android:id="@+id/searchHomeBtn"
+                android:id="@+id/searchHomeButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
@@ -119,7 +119,7 @@
                 tools:ignore="ContentDescription" />
 
             <ImageButton
-                android:id="@+id/searchSearchBtn"
+                android:id="@+id/searchSearchButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"

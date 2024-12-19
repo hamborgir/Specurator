@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NavUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -47,6 +48,9 @@ public class DetailActivity extends AppCompatActivity {
             setViews(phone);
         }
 
+        // TODOS:
+        // CARI CARA HANDLE HOME BUTTON BIAR BISA MILIH ANTARA FINISH ATAU INTENT
+        // YG INI NAMBAH STACK ACTIVITY MULU
         detailBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -57,7 +61,9 @@ public class DetailActivity extends AppCompatActivity {
         detailHomeButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                Intent homeIntent = new Intent(DetailActivity.this, HomeActivity.class);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
             }
         });
 
@@ -65,6 +71,7 @@ public class DetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent searchIntent = new Intent(DetailActivity.this, SearchActivity.class);
+                searchIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(searchIntent);
             }
         });
