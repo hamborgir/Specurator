@@ -4,9 +4,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.specurator.database.DBHelper;
 import com.example.specurator.model.PhoneModel;
 
 public class DetailActivity extends AppCompatActivity {
@@ -25,8 +28,11 @@ public class DetailActivity extends AppCompatActivity {
             ramTV, batteryTV, cameraTV, priceTV;
 
     ImageButton detailBackButton, detailHomeButton, detailSearchButton;
+    Button detailWishlistButton, detailCompareButton;
 
-    Intent intent;
+    Intent intent = getIntent();
+
+    DBHelper dbHelper = DBHelper.getInstance(this);
 
 
     @Override
@@ -75,6 +81,16 @@ public class DetailActivity extends AppCompatActivity {
                 startActivity(searchIntent);
             }
         });
+
+        detailWishlistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PhoneModel phone = (PhoneModel) intent.getSerializableExtra("phoneData");
+                dbHelper.addToWishlist(phone.getId());
+
+                Toast.makeText(DetailActivity.this, "Added to wishlist", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private void setViews(PhoneModel phone) {
@@ -97,6 +113,8 @@ public class DetailActivity extends AppCompatActivity {
         detailBackButton = findViewById(R.id.detailBackButton);
         detailHomeButton = findViewById(R.id.detailHomeButton);
         detailSearchButton = findViewById(R.id.detailSearchButton);
+        detailWishlistButton = findViewById(R.id.detailWishlistButton);
+        detailCompareButton = findViewById(R.id.detailCompareButton);
     }
 
     private void initViews() {

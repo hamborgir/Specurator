@@ -1,9 +1,12 @@
 package com.example.specurator.database;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import androidx.annotation.NonNull;
 
 import com.example.specurator.model.PhoneModel;
 
@@ -19,23 +22,27 @@ import java.util.List;
 public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "specurator.db";
     private static final int DB_VERSION = 1;
-    public static final String TABLE_NAME = "phone_specs";
+    public static final String TABLE_SPECS = "phone_specs";
+    public static final String TABLE_WISHLIST = "wishlist";
+
 
     // public db info
-    public static final String FIELD_ID = "id";
-    public static final String FIELD_IMAGE = "image";
-    public static final String FIELD_BRAND = "brand";
-    public static final String FIELD_NAME = "name";
-    public static final String FIELD_RELEASE_DATE = "release_date";
-    public static final String FIELD_WEIGHT = "weight";
-    public static final String FIELD_OS = "os";
-    public static final String FIELD_STORAGE = "storage";
-    public static final String FIELD_SCREEN_SIZE = "screen_size";
-    public static final String FIELD_SCREEN_RESOLUTION = "screen_resolution";
-    public static final String FIELD_RAM = "ram";
-    public static final String FIELD_BATTERY = "battery";
-    public static final String FIELD_CAMERA = "camera";
-    public static final String FIELD_PRICE = "price";
+    public static final String FIELD_SPECS_ID = "id";
+    public static final String FIELD_SPECS_IMAGE = "image";
+    public static final String FIELD_SPECS_BRAND = "brand";
+    public static final String FIELD_SPECS_NAME = "name";
+    public static final String FIELD_SPECS_RELEASE_DATE = "release_date";
+    public static final String FIELD_SPECS_WEIGHT = "weight";
+    public static final String FIELD_SPECS_OS = "os";
+    public static final String FIELD_SPECS_STORAGE = "storage";
+    public static final String FIELD_SPECS_SCREEN_SIZE = "screen_size";
+    public static final String FIELD_SPECS_SCREEN_RESOLUTION = "screen_resolution";
+    public static final String FIELD_SPECS_RAM = "ram";
+    public static final String FIELD_SPECS_BATTERY = "battery";
+    public static final String FIELD_SPECS_CAMERA = "camera";
+    public static final String FIELD_SPECS_PRICE = "price";
+    public static final String FIELD_WISHLIST_ID = "id";
+    public static final String FIELD_WISHLIST_SPECS_ID = "phone_id";
 
     private static DBHelper instance;
     private static SQLiteDatabase database;
@@ -116,12 +123,12 @@ public class DBHelper extends SQLiteOpenHelper {
         String[] selectionArgs = null;
 
         if (brand != "All") {
-            selection = FIELD_BRAND + " = ?";
+            selection = FIELD_SPECS_BRAND + " = ?";
             selectionArgs = new String[]{brand};
         }
 
         Cursor cursor = db.query(
-                TABLE_NAME,
+                TABLE_SPECS,
                 null,
                 selection,
                 selectionArgs,
@@ -130,31 +137,8 @@ public class DBHelper extends SQLiteOpenHelper {
                 null
         );
 
-        if (cursor.moveToFirst()) {
-            do {
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_ID));
-                String phoneBrand = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_BRAND));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_NAME));
-                String image = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_IMAGE));
-                String releaseDate = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_RELEASE_DATE));
-                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_WEIGHT));
-                String os = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_OS));
-                int storage = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_STORAGE));
-                double screenSize = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SCREEN_SIZE));
-                String screenResolution = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SCREEN_RESOLUTION));
-                double ram = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_RAM));
-                int battery = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_BATTERY));
-                double camera = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_CAMERA));
-                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_PRICE));
+        phoneList = extractPhoneData(cursor);
 
-                PhoneModel phone = new PhoneModel(id,image, phoneBrand, name,  releaseDate, weight, os, storage, screenSize, screenResolution, ram, battery, camera, price);
-                phoneList.add(phone);
-            } while (cursor.moveToNext());
-        }
-
-
-
-        cursor.close();
         db.close();
         return phoneList;
     }
@@ -162,11 +146,11 @@ public class DBHelper extends SQLiteOpenHelper {
     public List<PhoneModel> getPhonesByName(String searchString) {
         List<PhoneModel> phoneList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        String selection = FIELD_NAME + " LIKE ?";
+        String selection = FIELD_SPECS_NAME + " LIKE ?";
         String[] selectionArgs = new String[]{"%" + searchString + "%"}; // Add wildcards
 
         Cursor cursor = db.query(
-                TABLE_NAME,
+                TABLE_SPECS,
                 null,
                 selection,
                 selectionArgs,
@@ -175,32 +159,97 @@ public class DBHelper extends SQLiteOpenHelper {
                 null
         );
 
+//        if (cursor.moveToFirst()) {
+//            do {
+//                int id = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_SPECS_ID));
+//                String image = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_IMAGE));
+//                String brand = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_BRAND));
+//                String name = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_NAME));
+//                String releaseDate = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_RELEASE_DATE));
+//                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_WEIGHT));
+//                String os = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_OS));
+//                int storage = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_SPECS_STORAGE));
+//                double screenSize = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_SCREEN_SIZE));
+//                String screenResolution = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_SCREEN_RESOLUTION));
+//                double ram = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_RAM));
+//                int battery = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_SPECS_BATTERY));
+//                double camera = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_CAMERA));
+//                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_PRICE));
+//
+//                PhoneModel phone = new PhoneModel(id, image, brand, name, releaseDate, weight, os, storage, screenSize, screenResolution, ram, battery, camera, price);
+//                phoneList.add(phone);
+//            } while (cursor.moveToNext());
+//        }
+//        cursor.close();
+
+        db.close();
+
+        phoneList = extractPhoneData(cursor);
+
+        return phoneList;
+    }
+
+    public List<PhoneModel> getWishlistPhones() {
+        List<PhoneModel> phoneList = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        // Define the JOIN query
+        String query = "SELECT * FROM " + TABLE_SPECS +
+                " INNER JOIN " + TABLE_WISHLIST + " ON " +
+                TABLE_SPECS + "." + FIELD_SPECS_ID + " = " + TABLE_WISHLIST + "." + FIELD_WISHLIST_SPECS_ID;
+
+        Cursor cursor = db.rawQuery(query, null);
+        db.close();
+
+        phoneList = extractPhoneData(cursor);
+
+        return phoneList;
+    }
+
+    public void addToWishlist(int phoneId) {
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        // Check if the phoneId already exists in the wishlist
+        String query = "SELECT 1 FROM " + TABLE_WISHLIST + " WHERE " + FIELD_WISHLIST_SPECS_ID + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(phoneId)});
+
+        if (cursor.getCount() == 0) { // phoneId does not exist in wishlist
+            ContentValues values = new ContentValues();
+            values.put(FIELD_WISHLIST_SPECS_ID, phoneId);
+            db.insert(FIELD_WISHLIST_SPECS_ID, null, values);
+        }
+
+        cursor.close();
+        db.close();
+    }
+
+    List<PhoneModel> extractPhoneData(@NonNull Cursor cursor) {
+        List<PhoneModel> phoneList = new ArrayList<PhoneModel>();
+
         if (cursor.moveToFirst()) {
             do {
-                int id = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_ID));
-                String image = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_IMAGE));
-                String brand = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_BRAND));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_NAME));
-                String releaseDate = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_RELEASE_DATE));
-                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_WEIGHT));
-                String os = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_OS));
-                int storage = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_STORAGE));
-                double screenSize = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SCREEN_SIZE));
-                String screenResolution = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SCREEN_RESOLUTION));
-                double ram = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_RAM));
-                int battery = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_BATTERY));
-                double camera = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_CAMERA));
-                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_PRICE));
+                int id = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_SPECS_ID));
+                String image = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_IMAGE));
+                String brand = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_BRAND));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_NAME));
+                String releaseDate = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_RELEASE_DATE));
+                double weight = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_WEIGHT));
+                String os = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_OS));
+                int storage = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_SPECS_STORAGE));
+                double screenSize = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_SCREEN_SIZE));
+                String screenResolution = cursor.getString(cursor.getColumnIndexOrThrow(FIELD_SPECS_SCREEN_RESOLUTION));
+                double ram = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_RAM));
+                int battery = cursor.getInt(cursor.getColumnIndexOrThrow(FIELD_SPECS_BATTERY));
+                double camera = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_CAMERA));
+                double price = cursor.getDouble(cursor.getColumnIndexOrThrow(FIELD_SPECS_PRICE));
 
                 PhoneModel phone = new PhoneModel(id, image, brand, name, releaseDate, weight, os, storage, screenSize, screenResolution, ram, battery, camera, price);
                 phoneList.add(phone);
             } while (cursor.moveToNext());
         }
-
         cursor.close();
-        db.close();
+
         return phoneList;
     }
-
 
 }

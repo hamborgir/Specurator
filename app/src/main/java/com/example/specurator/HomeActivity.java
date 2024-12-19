@@ -32,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     DrawerLayout mainDrawerLayout;
     NavigationView mainNavView;
     RecyclerView mainRVContainer;
-    ImageButton mainNavButton, mainSearchButton;
+    ImageButton mainNavButton, mainSearchButton, mainWishlistButton;
 
     String lastClicked = "All";
     String[] brands = {"All", "Samsung", "Xiaomi", "Asus", "Google", "OnePlus", "Infinix", "Oppo", "Vivo"};
@@ -57,6 +57,7 @@ public class HomeActivity extends AppCompatActivity {
         mainNavView = findViewById(R.id.mainNavView);
         mainNavButton = findViewById(R.id.mainNavButton);
         mainSearchButton = findViewById(R.id.mainSearchButton);
+        mainWishlistButton = findViewById(R.id.mainWishlistButton);
 
         initDB();
         initPhoneList();
@@ -121,6 +122,14 @@ public class HomeActivity extends AppCompatActivity {
                 Intent moveIntent = new Intent(HomeActivity.this, SearchActivity.class);
                 moveIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(moveIntent);
+            }
+        });
+
+        mainWishlistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent wishlistIntent = new Intent(HomeActivity.this, WishlistActivity.class);
+                startActivity(wishlistIntent);
             }
         });
     }
