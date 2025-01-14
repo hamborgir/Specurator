@@ -55,6 +55,7 @@
         android:layout_height="wrap_content"
         android:text="Wishlist"
         android:paddingTop="8dp"
+        android:paddingHorizontal="16dp"
         android:textColor="@color/colorPrimary"
         android:textStyle="bold"
         android:textSize="24dp"/>
@@ -118,7 +119,7 @@
                 android:id="@+id/wlWishlistButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:src="@drawable/add_to_wishlist"
+                android:src="@drawable/iconwishlist"
                 android:background="@color/transparent"
                 android:padding="12dp"
                 app:tint="@color/colorPrimary"

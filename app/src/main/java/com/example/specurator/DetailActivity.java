@@ -30,8 +30,8 @@ public class DetailActivity extends AppCompatActivity {
     TextView nameTV, releaseDateTV, weightTV, osTV, storageTV, screenSizeTV, screenResolutionTV,
             ramTV, batteryTV, cameraTV, priceTV;
 
-    ImageButton detailBackButton, detailHomeButton, detailSearchButton;
-    Button detailWishlistButton, detailCompareButton;
+    ImageButton detailBackButton, detailHomeButton, detailSearchButton, detailWishlistButton;
+    Button detailAddWishlistButton;
 
     Intent intent = getIntent();
 
@@ -88,7 +88,7 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
-        detailWishlistButton.setOnClickListener(new View.OnClickListener() {
+        detailAddWishlistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (isWishlist) {
@@ -106,14 +106,23 @@ public class DetailActivity extends AppCompatActivity {
             }
         });
 
+        detailWishlistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent wlIntent = new Intent(DetailActivity.this, WishlistActivity.class);
+                wlIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(wlIntent);
+            }
+        });
+
 //        loadFragment(new SearchCompareFragment());
     }
         private void updateWishlistButtonState() {
             isWishlist = dbHelper.isPhoneInWishlist(phone.getId());
             if (isWishlist) {
-                detailWishlistButton.setText("Remove from Wishlist");
+                detailAddWishlistButton.setText("Remove from Wishlist");
             } else {
-                detailWishlistButton.setText("Add to Wishlist");
+                detailAddWishlistButton.setText("Add to Wishlist");
             }
         }
 
@@ -131,13 +140,6 @@ public class DetailActivity extends AppCompatActivity {
         cameraTV.setText(Double.toString(phone.getCamera()));
         priceTV.setText("IDR "+ Double.toString(phone.getPrice()));
         Glide.with(this).load(phone.getImage()).into(imageIV);
-
-        // buttons
-        detailBackButton = findViewById(R.id.detailBackButton);
-        detailHomeButton = findViewById(R.id.detailHomeButton);
-        detailSearchButton = findViewById(R.id.detailSearchButton);
-        detailWishlistButton = findViewById(R.id.detailWishlistButton);
-        detailCompareButton = findViewById(R.id.detailCompareButton);
     }
 
     private void initViews() {
@@ -155,7 +157,12 @@ public class DetailActivity extends AppCompatActivity {
         cameraTV = findViewById(R.id.cameraTV);
         priceTV = findViewById(R.id.priceTV);
 
-
+        // buttons
+        detailBackButton = findViewById(R.id.detailBackButton);
+        detailHomeButton = findViewById(R.id.detailHomeButton);
+        detailSearchButton = findViewById(R.id.detailSearchButton);
+        detailAddWishlistButton = findViewById(R.id.detailAddWishlistButton);
+        detailWishlistButton = findViewById(R.id.detailWishlistButton);
     }
 
     private void loadFragment(Fragment fg){

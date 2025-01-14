@@ -54,8 +54,13 @@ dependencies {
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
     implementation(libs.glide)
+    implementation(libs.firebase.messaging.ktx)
+    implementation(libs.firebase.inappmessaging.display)
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
     androidTestImplementation(libs.espresso.core)
     annotationProcessor(libs.compiler)
+
+    implementation("com.google.firebase:firebase-inappmessaging-display:21.0.1")
+    implementation("com.google.firebase:firebase-analytics:22.1.2")
 }

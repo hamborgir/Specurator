@@ -2,6 +2,8 @@ package com.example.specurator;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -19,6 +21,7 @@ import com.example.specurator.model.PhoneModel;
 import java.util.List;
 
 public class WishlistActivity extends AppCompatActivity {
+    ImageButton wlBackButton, wlHomeButton, wlSearchButton, wlWishlistButton;
 
     RecyclerView wlRVContainer;
 
@@ -37,10 +40,48 @@ public class WishlistActivity extends AppCompatActivity {
             return insets;
         });
 
+        initViews();
+        setButtons();
+
         List<PhoneModel> phoneList = dbHelper.getWishlistPhones();
 
         wlRVContainer = findViewById(R.id.wlRVContainer);
+
         fillRV(phoneList);
+    }
+
+    private void setButtons() {
+        wlBackButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+
+        wlHomeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent homeIntent = new Intent(WishlistActivity.this, HomeActivity.class);
+                homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(homeIntent);
+            }
+        });
+
+        wlSearchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent searchIntent = new Intent(WishlistActivity.this, SearchActivity.class);
+                searchIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(searchIntent);
+            }
+        });
+    }
+
+    private void initViews() {
+        wlBackButton = findViewById(R.id.wlBackButton);
+        wlHomeButton = findViewById(R.id.wlHomeButton);
+        wlSearchButton = findViewById(R.id.wlSearchButton);
+        wlWishlistButton = findViewById(R.id.wlWishlistButton);
     }
 
     private void fillRV(List<PhoneModel> phoneList) {

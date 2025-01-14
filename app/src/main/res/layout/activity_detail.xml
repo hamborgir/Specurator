@@ -168,23 +168,28 @@
         android:paddingHorizontal="15dp">
 
         <Button
-            android:id="@+id/detailWishlistButton"
+            android:id="@+id/detailAddWishlistButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Wishlist"
             android:textColor="@color/colorBackground"
             android:backgroundTint="@color/colorPrimary"/>
 
-        <Button
-            android:id="@+id/detailCompareButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Compare"
-            android:textColor="@color/colorBackground"
-            android:backgroundTint="@color/colorPrimary"/>
 
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Compare to:"
+        android:textStyle="bold"
+        android:textSize="24sp"
+        android:fontFamily="@font/inria_sans"
+        android:textColor="@color/colorPrimary"
+        android:paddingStart="4dp"
+        android:paddingVertical="4dp"/>
+
 
     <LinearLayout
         android:id="@+id/mainRVContainer"
@@ -246,12 +251,12 @@
                 android:alpha="0"
                 tools:ignore="ContentDescription" />
             <ImageButton
+                android:id="@+id/detailWishlistButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/iconsearch"
+                android:src="@drawable/iconwishlist"
                 android:background="@color/transparent"
                 android:padding="12dp"
-                android:alpha="0"
                 tools:ignore="ContentDescription" />
         </LinearLayout>
     </LinearLayout>

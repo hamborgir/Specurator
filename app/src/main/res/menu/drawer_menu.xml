@@ -6,31 +6,39 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/filter_all"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="All Brand"/>
         <item
             android:id="@+id/filter_samsung"
             android:icon="@drawable/iconhome"
-            />
+            android:title="Samsung" />
         <item
             android:id="@+id/filter_xiaomi"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="Xiaomi"/>
         <item
             android:id="@+id/filter_asus"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="Asus" />
         <item
             android:id="@+id/filter_google"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="Google"/>
         <item
             android:id="@+id/filter_oneplus"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="OnePlus"/>
         <item
             android:id="@+id/filter_infinix"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="Infinix"/>
         <item
             android:id="@+id/filter_oppo"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="Oppo"/>
         <item
             android:id="@+id/filter_vivo"
-            android:icon="@drawable/iconhome" />
+            android:icon="@drawable/iconhome"
+            android:title="Vivo"/>
     </group>
 </menu>

@@ -23,7 +23,7 @@ import java.util.List;
 
 public class SearchActivity extends AppCompatActivity {
 
-    ImageButton searchBackButton, searchHomeButton, searchSearchButton;
+    ImageButton searchBackButton, searchHomeButton, searchSearchButton, searchWishlistButton;
     RecyclerView searchRVContainer;
     EditText searchBarET;
 
@@ -83,6 +83,15 @@ public class SearchActivity extends AppCompatActivity {
                 startActivity(homeIntent);
             }
         });
+
+        searchWishlistButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent wlIntent = new Intent(SearchActivity.this, WishlistActivity.class);
+                wlIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(wlIntent);
+            }
+        });
     }
 
     private void initViews() {
@@ -90,6 +99,7 @@ public class SearchActivity extends AppCompatActivity {
         searchHomeButton = findViewById(R.id.searchHomeButton);
         searchSearchButton = findViewById(R.id.searchSearchButton);
         searchRVContainer = findViewById(R.id.searchRVContainer);
+        searchWishlistButton = findViewById(R.id.searchWishlistButton);
         searchBarET = findViewById(R.id.searchBarET);
     }
 }
