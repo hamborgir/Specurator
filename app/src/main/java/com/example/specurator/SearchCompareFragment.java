@@ -45,10 +45,10 @@ public class SearchCompareFragment extends Fragment {
 
         View rootView =  inflater.inflate(R.layout.fragment_search_compare, container, false);
 
-        fragRVContainer = getActivity().findViewById(R.id.fragRVContainer);
-        fragBarET = getActivity().findViewById(R.id.fragBarET);
-
-        fragBarET.setHint("test");
+//        fragRVContainer = getActivity().findViewById(R.id.fragRVContainer);
+//        fragBarET = getActivity().findViewById(R.id.fragBarET);
+//
+//        fragBarET.setHint("test");
 
 //        fragBarET.setOnKeyListener(new View.OnKeyListener() {
 //            @Override
