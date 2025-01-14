@@ -4,4 +4,7 @@
     <color name="colorPrimary">#FFBA9731</color>
     <color name="colorAccent">#FFDACE84</color>
     <color name="transparent">#00000000</color>
+
+    <color name="rowDetail">#FFDACE84</color>
+    <color name="rowHeader">#FFBA9731</color>
 </resources>

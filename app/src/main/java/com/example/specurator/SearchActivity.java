@@ -60,6 +60,8 @@ public class SearchActivity extends AppCompatActivity {
         });
     }
 
+
+
     private void fillRV(List<PhoneModel> phoneList) {
         PhoneAdapter adapter = new PhoneAdapter(phoneList);
         searchRVContainer.setLayoutManager(new LinearLayoutManager(this));

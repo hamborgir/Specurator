@@ -126,14 +126,13 @@ public class DetailActivity extends AppCompatActivity {
         storageTV.setText(Integer.toString(phone.getStorage()));
         screenSizeTV.setText(Double.toString(phone.getScreen_size()));
         screenResolutionTV.setText(phone.getScreen_resolution());
-        Log.d("dbg", "setViews: " + phone.getScreen_resolution());
         ramTV.setText(Double.toString(phone.getRam()));
         batteryTV.setText(Integer.toString(phone.getBattery()));
         cameraTV.setText(Double.toString(phone.getCamera()));
         priceTV.setText("IDR "+ Double.toString(phone.getPrice()));
         Glide.with(this).load(phone.getImage()).into(imageIV);
 
-        // others
+        // buttons
         detailBackButton = findViewById(R.id.detailBackButton);
         detailHomeButton = findViewById(R.id.detailHomeButton);
         detailSearchButton = findViewById(R.id.detailSearchButton);
@@ -165,5 +164,9 @@ public class DetailActivity extends AppCompatActivity {
 
         transaction.replace(R.id.fragmentContainerView, fg);
         transaction.commit();
+    }
+
+    public PhoneModel getPhone() {
+        return phone;
     }
 }

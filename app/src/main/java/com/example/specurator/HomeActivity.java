@@ -134,6 +134,8 @@ public class HomeActivity extends AppCompatActivity {
                 startActivity(wishlistIntent);
             }
         });
+
+
     }
 
     private void fillRV(List<PhoneModel> phoneList) {

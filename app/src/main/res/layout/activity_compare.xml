@@ -1,23 +1,419 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CompareActivity">
+    tools:context=".CompareActivity"
+    android:orientation="vertical"
+    android:background="@color/colorBackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="16dp"
+        android:paddingEnd="8dp"
+        android:paddingBottom="8dp">
+
+        <ImageButton
+            android:id="@+id/compareBackButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:background="@android:color/transparent"
+            android:src="@drawable/backicon"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/searchNavButton"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:alpha="0"
+            android:background="@android:color/transparent"
+            android:src="@drawable/menu_01"
+            tools:ignore="ContentDescription" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="12dp"
+        android:background="@color/colorPrimary"
+        android:paddingTop="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/colorBackground"></LinearLayout>
+    </LinearLayout>
 
     <TextView
-        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="180dp"
-        android:layout_marginTop="313dp"
-        android:layout_marginEnd="173dp"
-        android:layout_marginBottom="399dp"
-        android:text="CompareActivity"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        android:fontFamily="@font/inria_sans"
+        android:textColor="@color/colorPrimary"
+        android:text="Specs Comparison"
+        android:paddingBottom="12dp"
+        android:paddingHorizontal="16dp"
+        android:textSize="24dp"
+        android:textStyle="bold"/>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:outlineAmbientShadowColor="@color/colorPrimary"
+        android:paddingHorizontal="16dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/inria_sans"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Phone Name"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/nameTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/nameTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Phone Image"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:src="@drawable/sample"
+                android:id="@+id/imageIV1"/>
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_weight="1"
+                android:padding="4dp"
+                android:layout_gravity="center"
+                android:src="@drawable/sample"
+                android:id="@+id/imageIV2"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Release Date"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/releaseDateTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/releaseDateTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Weight"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/weightTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/weightTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="O.S."/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/osTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/osTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Storage"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/storageTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/storageTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Screen Size"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/screenSizeTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/screenSizeTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Screen Resolution"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/screenResolutionTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/screenResolutionTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="RAM"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/ramTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/ramTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Battery"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/batteryTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/batteryTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Camera"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/cameraTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/cameraTV2"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:layout_width="@dimen/rowHeader"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:gravity="center"
+                android:textColor="@color/rowHeader"
+                android:text="Price"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 1"
+                android:id="@+id/priceTV1"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/table_border"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/rowDetail"
+                android:text="Phone 2"
+                android:id="@+id/priceTV2"/>
+        </TableRow>
+
+
+
+    </TableLayout>
+</LinearLayout>

@@ -39,39 +39,38 @@ public class SearchCompareFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View rootView = inflater.inflate(R.layout.fragment_search_compare, container, false);
 
-        View rootView =  inflater.inflate(R.layout.fragment_search_compare, container, false);
+        fragRVContainer = rootView.findViewById(R.id.fragRVContainer);
+        fragBarET = rootView.findViewById(R.id.fragBarET);
 
-//        fragRVContainer = getActivity().findViewById(R.id.fragRVContainer);
-//        fragBarET = getActivity().findViewById(R.id.fragBarET);
-//
-//        fragBarET.setHint("test");
+        dbHelper = new DBHelper(getContext());
 
-//        fragBarET.setOnKeyListener(new View.OnKeyListener() {
-//            @Override
-//            public boolean onKey(View v, int keyCode, KeyEvent event) {
-//                if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
-//                    String searchString = fragBarET.getText().toString();
-//                    List<PhoneModel> phoneList = dbHelper.getPhonesByName(searchString);
-//
-//                    fillRV(phoneList);
-//
-//
-//                    return true;
-//                }
-//                return false;
-//            }
-//        });
+//        fragBarET.setHint("Find phone to compare...");
+
+        fragBarET.setOnKeyListener((v, keyCode, event) -> {
+            if (event.getAction() == KeyEvent.ACTION_DOWN && keyCode == KeyEvent.KEYCODE_ENTER) {
+                performSearch();
+                return true;
+            }
+            return false;
+        });
 
         return rootView;
     }
 
+    private void performSearch() {
+        String searchString = fragBarET.getText().toString().trim();
+        if (!searchString.isEmpty()) {
+            List<PhoneModel> phoneList = dbHelper.getPhonesByName(searchString);
+            fillRV(phoneList);
+        }
+    }
+
     private void fillRV(List<PhoneModel> phoneList) {
-        PhoneAdapter adapter = new PhoneAdapter(phoneList);
-        fragRVContainer.setLayoutManager(new LinearLayoutManager(getActivity()));
+        PhoneAdapter adapter = new PhoneAdapter(phoneList, CompareActivity.class);
+        fragRVContainer.setLayoutManager(new LinearLayoutManager(getContext()));
         fragRVContainer.setAdapter(adapter);
     }
 }
