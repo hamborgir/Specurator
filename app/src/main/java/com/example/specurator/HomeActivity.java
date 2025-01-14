@@ -154,8 +154,10 @@ public class HomeActivity extends AppCompatActivity {
                             lastClicked = "Infinix";
                         } else if (item.getItemId() == R.id.filter_oppo && lastClicked != "Oppo") {
                             lastClicked = "Oppo";
-                        } else {
+                        } else if (item.getItemId() == R.id.filter_vivo && lastClicked != "Vivo"){
                             lastClicked = "Vivo";
+                        } else {
+                            lastClicked = "All";
                         }
 
                         phoneList = dbHelper.getPhones(lastClicked);
