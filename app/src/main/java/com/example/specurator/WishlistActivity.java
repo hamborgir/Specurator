@@ -1,8 +1,10 @@
 package com.example.specurator;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.activity.EdgeToEdge;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
@@ -22,6 +24,8 @@ public class WishlistActivity extends AppCompatActivity {
 
     public DBHelper dbHelper = DBHelper.getInstance(this);
 
+    PhoneAdapter adapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,8 +44,21 @@ public class WishlistActivity extends AppCompatActivity {
     }
 
     private void fillRV(List<PhoneModel> phoneList) {
-        PhoneAdapter adapter = new PhoneAdapter(phoneList);
+        adapter = new PhoneAdapter(phoneList);
         wlRVContainer.setLayoutManager(new LinearLayoutManager(this));
         wlRVContainer.setAdapter(adapter);
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        refreshWishlist();
+    }
+
+    private void refreshWishlist() {
+        List<PhoneModel> updatedWishlist = dbHelper.getWishlistPhones();
+        adapter.setPhoneList(updatedWishlist);
+        adapter.notifyDataSetChanged();
+    }
+
 }

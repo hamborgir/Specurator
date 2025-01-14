@@ -93,4 +93,8 @@ public class PhoneAdapter extends RecyclerView.Adapter<PhoneAdapter.PhoneViewHol
     public int getItemCount() {
         return phoneList.size();
     }
+
+    public void setPhoneList(List<PhoneModel> phoneList) {
+        this.phoneList = phoneList;
+    }
 }

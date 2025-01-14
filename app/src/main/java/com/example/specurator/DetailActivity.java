@@ -16,6 +16,9 @@ import androidx.core.app.NavUtils;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.bumptech.glide.Glide;
 import com.example.specurator.database.DBHelper;
@@ -32,7 +35,11 @@ public class DetailActivity extends AppCompatActivity {
 
     Intent intent = getIntent();
 
+    PhoneModel phone;
+
     DBHelper dbHelper = DBHelper.getInstance(this);
+
+    Boolean isWishlist;
 
 
     @Override
@@ -48,15 +55,14 @@ public class DetailActivity extends AppCompatActivity {
 
         initViews();
         intent = getIntent();
-        PhoneModel phone = (PhoneModel) intent.getSerializableExtra("phoneData");
+        phone = (PhoneModel) intent.getSerializableExtra("phoneData");
 
         if (phone != null) {
             setViews(phone);
         }
 
-        // TODOS:
-        // CARI CARA HANDLE HOME BUTTON BIAR BISA MILIH ANTARA FINISH ATAU INTENT
-        // YG INI NAMBAH STACK ACTIVITY MULU
+        updateWishlistButtonState();
+
         detailBackButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -85,13 +91,31 @@ public class DetailActivity extends AppCompatActivity {
         detailWishlistButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                PhoneModel phone = (PhoneModel) intent.getSerializableExtra("phoneData");
-                dbHelper.addToWishlist(phone.getId());
-
-                Toast.makeText(DetailActivity.this, "Added to wishlist", Toast.LENGTH_SHORT).show();
+                if (isWishlist) {
+                    // Remove from wishlist
+                    dbHelper.removeFromWishlist(phone.getId());
+                    Toast.makeText(DetailActivity.this, "Removed from wishlist", Toast.LENGTH_SHORT).show();
+                } else {
+                    // Add to wishlist
+                    dbHelper.addToWishlist(phone.getId());
+                    Toast.makeText(DetailActivity.this, "Added to wishlist", Toast.LENGTH_SHORT).show();
+                }
+                // Toggle the state and update the button
+                isWishlist = dbHelper.isPhoneInWishlist(phone.getId());
+                updateWishlistButtonState();
             }
         });
+
+//        loadFragment(new SearchCompareFragment());
     }
+        private void updateWishlistButtonState() {
+            isWishlist = dbHelper.isPhoneInWishlist(phone.getId());
+            if (isWishlist) {
+                detailWishlistButton.setText("Remove from Wishlist");
+            } else {
+                detailWishlistButton.setText("Add to Wishlist");
+            }
+        }
 
     private void setViews(PhoneModel phone) {
         // phone data related
@@ -132,5 +156,14 @@ public class DetailActivity extends AppCompatActivity {
         cameraTV = findViewById(R.id.cameraTV);
         priceTV = findViewById(R.id.priceTV);
 
+
+    }
+
+    private void loadFragment(Fragment fg){
+        FragmentManager manager = getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+
+        transaction.replace(R.id.fragmentContainerView, fg);
+        transaction.commit();
     }
 }

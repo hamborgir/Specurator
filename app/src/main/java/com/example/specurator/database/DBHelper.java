@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
@@ -73,9 +74,9 @@ public class DBHelper extends SQLiteOpenHelper {
         return instance;
     }
 
-    public SQLiteDatabase openDatabase() throws SQLException {
+    public SQLiteDatabase openDatabase() {
         if (database == null || !database.isOpen()) {
-            database = SQLiteDatabase.openDatabase(context.getDatabasePath(DB_NAME).getAbsolutePath(), null, SQLiteDatabase.OPEN_READONLY);
+            database = SQLiteDatabase.openDatabase(context.getDatabasePath(DB_NAME).getAbsolutePath(), null, SQLiteDatabase.OPEN_READWRITE);
         }
         return database;
     }
@@ -139,7 +140,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         phoneList = extractPhoneData(cursor);
 
-        db.close();
+//        db.close();
         return phoneList;
     }
 
@@ -182,32 +183,30 @@ public class DBHelper extends SQLiteOpenHelper {
 //        }
 //        cursor.close();
 
-        db.close();
-
         phoneList = extractPhoneData(cursor);
 
+//        db.close();
         return phoneList;
     }
 
     public List<PhoneModel> getWishlistPhones() {
-        List<PhoneModel> phoneList = new ArrayList<>();
+        List<PhoneModel> wishlistPhone = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
 
         // Define the JOIN query
-        String query = "SELECT * FROM " + TABLE_SPECS +
+        String query = "SELECT "+ TABLE_SPECS + ".* FROM " + TABLE_SPECS +
                 " INNER JOIN " + TABLE_WISHLIST + " ON " +
                 TABLE_SPECS + "." + FIELD_SPECS_ID + " = " + TABLE_WISHLIST + "." + FIELD_WISHLIST_SPECS_ID;
 
         Cursor cursor = db.rawQuery(query, null);
-        db.close();
+        wishlistPhone = extractPhoneData(cursor);
 
-        phoneList = extractPhoneData(cursor);
-
-        return phoneList;
+//        db.close();
+        return wishlistPhone;
     }
 
     public void addToWishlist(int phoneId) {
-        SQLiteDatabase db = this.getWritableDatabase();
+        SQLiteDatabase db = this.openDatabase();
 
         // Check if the phoneId already exists in the wishlist
         String query = "SELECT 1 FROM " + TABLE_WISHLIST + " WHERE " + FIELD_WISHLIST_SPECS_ID + " = ?";
@@ -216,11 +215,31 @@ public class DBHelper extends SQLiteOpenHelper {
         if (cursor.getCount() == 0) { // phoneId does not exist in wishlist
             ContentValues values = new ContentValues();
             values.put(FIELD_WISHLIST_SPECS_ID, phoneId);
-            db.insert(FIELD_WISHLIST_SPECS_ID, null, values);
+            db.insert(TABLE_WISHLIST, null, values);
         }
 
+        Log.d("DBHelper:AddToWishlist", "addToWishlist: "+phoneId);
         cursor.close();
-        db.close();
+
+    }
+
+    public void removeFromWishlist(int phoneId) {
+        SQLiteDatabase db = this.openDatabase();
+        int rowsCount = db.delete(TABLE_WISHLIST, FIELD_WISHLIST_SPECS_ID + " = ?", new String[]{String.valueOf(phoneId)});
+        Log.d("DBHelper:RemoveWishlist", "removeFromWishlist: "+phoneId+" cols: "+ rowsCount);
+    }
+
+    public boolean isPhoneInWishlist(int phoneId) {
+        SQLiteDatabase db = this.openDatabase();
+        String query = "SELECT 1 FROM " + TABLE_WISHLIST + " WHERE " + FIELD_WISHLIST_SPECS_ID + " = ?";
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(phoneId)});
+        boolean exists = cursor.getCount() > 0;
+        cursor.close();
+
+        Log.d("DBHelper:IsPhoneInWishlist", "isPhoneInWishlist: "+exists+" rows: "+cursor.getCount()+" phoneId: "+phoneId);
+        Log.d("DBHelper:IsPhoneInWishlist", "query: "+ query);
+
+        return exists;
     }
 
     List<PhoneModel> extractPhoneData(@NonNull Cursor cursor) {

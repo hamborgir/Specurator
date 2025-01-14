@@ -59,6 +59,8 @@ public class HomeActivity extends AppCompatActivity {
         mainSearchButton = findViewById(R.id.mainSearchButton);
         mainWishlistButton = findViewById(R.id.mainWishlistButton);
 
+        Boolean deleted = this.deleteDatabase("specurator.db");
+        Log.d("deleted", "onCreate: "+deleted);
         initDB();
         initPhoneList();
         fillRV(phoneList);
